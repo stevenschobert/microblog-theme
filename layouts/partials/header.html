@@ -1,11 +1,7 @@
 <header class="header">
   <div class="container">
     <a class="logo" href="/">
-      {{- if eq hugo.Environment "development" }}
-        <img src="https://avatars.micro.blog/avatars/2024/22/4298.jpg" alt="{{ .Site.Title }} Profile Photo"/>
-      {{- else }}
-        <img src="{{ .Site.Author.avatar }}" alt="{{ .Site.Title }} Profile Photo"/>
-      {{- end }}
+      <img src="{{ .Site.Author.avatar }}" alt="{{ .Site.Title }} Profile Photo"/>
     </a>
     <nav class="nav">
       <ul class="list list--nav">
