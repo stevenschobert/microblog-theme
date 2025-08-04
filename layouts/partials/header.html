@@ -1,0 +1,22 @@
+<header class="header">
+  <div class="container">
+    <a class="logo" href="/">
+      {{- if eq hugo.Environment "development" }}
+        <img src="https://avatars.micro.blog/avatars/2024/22/4298.jpg" alt="{{ .Site.Title }} Profile Photo"/>
+      {{- else }}
+        <img src="{{ .Site.Author.avatar }}" alt="{{ .Site.Title }} Profile Photo"/>
+      {{- end }}
+    </a>
+    <nav class="nav">
+      <ul class="list list--nav">
+        {{ range .Site.Menus.main }}
+          {{ if .Page.Params.redirect_url }}
+            <li class="item item--nav"><a href="{{ .Page.Params.redirect_url }}">{{ .Name }}</a></li>
+          {{ else }}
+            <li class="item item--nav"><a href="{{ .URL | relLangURL | safeURL }}">{{ .Name }}</a></li>
+          {{ end }}
+        {{ end }}
+      </ul>
+    </nav>
+  </div>
+</header>

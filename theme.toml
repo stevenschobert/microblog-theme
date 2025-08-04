@@ -1,0 +1,15 @@
+name = 'schobert-microblog-theme'
+license = 'MIT'
+licenselink = 'https://github.com/stevenschobert/microblog-theme/LICENSE'
+description = 'My custom theme for Micro.blog'
+homepage = 'https://github.com/stevenschobert/microblog-theme'
+demosite = 'https://stevenschobert.microblog.com'
+
+[author]
+  name = 'Steven Schobert'
+  homepage = 'https://stevenschobert.com'
+
+[original]
+  author = 'David Darnes'
+  homepage = 'https://garth.darn.es'
+  repo = 'https://github.com/daviddarnes/garth'
