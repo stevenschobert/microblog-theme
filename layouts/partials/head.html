@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+<title>{{ block "title" . }}{{ if .IsHome }}{{ .Site.Title }}{{ else if .Title }}{{ .Title }} | {{ .Site.Title }}{{ else }}{{ delimit (split .Summary " " | first 5) " " }} … | {{ .Site.Title }}{{ end }}{{ end }}</title>
 {{- with resources.Get "css/garth.scss" | toCSS }}
   {{- if eq hugo.Environment "development" }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
