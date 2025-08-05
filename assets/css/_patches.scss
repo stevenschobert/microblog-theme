@@ -1,0 +1,7 @@
+.article.article--micropost {
+  .post-meta::before {
+    content: '-';
+    visibility: hidden;
+    display: block;
+  }
+}

@@ -1,6 +1,6 @@
 {{ define "main" }}
   <main class="main container">
-    <article class="article article--post content typeset">
+    <article class="article {{ if .Title -}} article--post {{- else -}} article--micropost {{- end }} content typeset">
       {{ if .Title }}
         <h1>{{ .Title }}</h1>
       {{ end }}
