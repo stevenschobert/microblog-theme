@@ -11,7 +11,18 @@
               <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
             {{ end }}
             {{ partial "post_meta.html" . }}
-            {{ if .Params.custom_summary }}
+            {{ if in .RawContent "<!--more-->" }}
+              {{ $splitContents := split .RawContent "<!--more-->" }}
+              {{ $summary := index $splitContents 0 }}
+              {{ $summary := replaceRE "\\[\\^.*?\\]" "" $summary }}
+              {{ $summary := replaceRE "\\n\\[\\^.*?\\]:.*" "" $summary }}
+              <p>{{ $summary | markdownify }}</p>
+              <p>
+                <a class="read-more" href="{{ .Permalink }}">
+                  <button>{{ T "Read more" }} →</button>
+                </a>
+              </p>
+            {{ else if .Params.custom_summary }}
               <p>{{ .Summary | safeHTML }}</p>
             {{ else }}
               {{ .Content }}
