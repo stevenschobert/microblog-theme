@@ -16,10 +16,10 @@
               {{ $summary := index $splitContents 0 }}
               {{ $summary := replaceRE "\\[\\^.*?\\]" "" $summary }}
               {{ $summary := replaceRE "\\n\\[\\^.*?\\]:.*" "" $summary }}
-              <p>{{ $summary | markdownify }}</p>
               <p>
+                {{ $summary | markdownify }}...
                 <a class="read-more" href="{{ .Permalink }}">
-                  <button>{{ T "Read more" }} →</button>
+                  {{ T "Read more" }} →
                 </a>
               </p>
             {{ else if .Params.custom_summary }}
