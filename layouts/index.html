@@ -1,0 +1,39 @@
+{{ define "main" }}
+<main class="main container">
+  <div class="content">
+
+    <ul class="list list--posts">
+      {{ $paginator := .Paginate (where .Site.Pages.ByDate.Reverse "Type" "post") }}
+      {{ range .Paginator.Pages }}
+        <li class="item item--post">
+          <article class="article article--post typeset">
+            {{ if .Title }}
+              <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+            {{ end }}
+            {{ partial "post_meta.html" . }}
+            {{ if .Params.custom_summary }}
+              <p>{{ .Summary | safeHTML }}</p>
+            {{ else }}
+              {{ .Content }}
+            {{ end }}
+          </article>
+        </li>
+      {{ end }}
+    </ul>
+
+    <div class="post-nav">
+      {{ if $paginator.HasPrev }}
+      <span class="prev">
+        <a href="{{ $paginator.Prev.URL }}" title="Previous Page"><button>← {{ T "Newer" }}</button></a>
+      </span>
+      {{ end }}
+      {{ if $paginator.HasNext }}
+      <span class="next">
+        <a href="{{ $paginator.Next.URL }}"><button>{{ T "Older" }} →</button></a>
+      </span>
+      {{ end }}
+    </div>
+
+  </div>
+</main>
+{{ end }}
