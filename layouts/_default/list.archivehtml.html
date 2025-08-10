@@ -7,24 +7,27 @@
         Below is a full list of posts sorted from newest to oldest.
         You can also find posts by visiting any of these category pages:
         {{ $list := sort ($.Site.GetPage "taxonomyTerm" "categories").Pages "Title" }}
+        <ul>
         {{ range $index, $element := $list }}
-          <a href="{{ $element.Permalink }}">{{ $element.Title }}</a>{{ if (lt (add $index 1) (len $list)) }},{{ end }}
+          <li><a href="{{ $element.Permalink }}">{{ $element.Title }}</a></li>
         {{ end }}
+        </ul>
       </p>
     </article>
     <article class="article article--page typeset">
       <h2>Full post list</h2>
       {{ $list := (where .Site.Pages "Type" "post") }}
-      <p>
+      <ul>
       {{ range $list }}
-        <a href="{{ .Permalink }}" class="u-url"><span class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05-0700" }}">{{ .Date.Format "02 Jan 2006" }}</span></a>:
-        {{ if .Title }}
-        <span class="p-name"><b>{{ .Title }}</b></span>
-        {{ end }}
-        <span class="p-summary">{{ .Content | plainify | htmlUnescape | truncate 150 }}</span>
-        <br />
+        <li>
+          <a href="{{ .Permalink }}" class="u-url"><span class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05-0700" }}">{{ .Date.Format "02 Jan 2006" }}</span></a>:
+          {{ if .Title }}
+          <span class="p-name"><b>{{ .Title }}</b></span>
+          {{ end }}
+          <span class="p-summary">{{ .Content | plainify | htmlUnescape | truncate 150 }}</span>
+        </li>
       {{ end }}
-      </p>
+      </ul>
     </article>
   </div>
 </main>
