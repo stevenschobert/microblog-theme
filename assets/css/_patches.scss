@@ -34,3 +34,14 @@
     }
   }
 }
+
+.header {
+  .logo {
+    margin-bottom: 0.2rem;
+  }
+  @include breakpoint(break-1) {
+    .logo {
+      margin-bottom: 0;
+    }
+  }
+}
