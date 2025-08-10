@@ -13,7 +13,7 @@
             {{ if .Title }}
               <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
             {{ end }}
-            {{ partial "post_meta.html" (dict "Date" .Date "Permalink" .Permalink) }}
+            {{ partial "post_meta.html" (dict "Date" .Date "Permalink" .Permalink "Params" .Params) }}
             {{ if in .RawContent "<!--more-->" }}
               {{ $splitContents := split .RawContent "<!--more-->" }}
               {{ $summary := index $splitContents 0 }}
