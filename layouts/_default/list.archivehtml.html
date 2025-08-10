@@ -1,0 +1,30 @@
+{{ define "main" }}
+<main class="main container">
+  <div class="content">
+    <article class="article article--page typeset">
+      <h1>Archive</h1>
+    </article>
+    <article class="article article--page typeset">
+      <h2>Categories</h2>
+      <ul class="archive-categories">
+        {{ range $list }}
+          <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+        {{ end }}
+      </ul>
+    </article>
+    <article class="article article--page typeset">
+      <h2>Full post list</h2>
+      {{ $list := (where .Site.Pages "Type" "post") }}
+      {{ range $list }}
+      <p>
+        <a href="{{ .Permalink }}" class="u-url"><span class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05-0700" }}">{{ partial "dateformat/short" . }}</span></a>:
+        {{ if .Title }}
+        <span class="p-name"><b>{{ .Title }}</b></span>
+        {{ end }}
+        <span class="p-summary">{{ .Content | plainify | htmlUnescape | truncate 150 }}</span>
+      </p>
+      {{ end }}
+    </article>
+  </div>
+</main>
+{{ end }}
