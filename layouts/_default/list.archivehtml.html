@@ -7,6 +7,7 @@
     <article class="article article--page typeset">
       <h2>Categories</h2>
       <ul class="archive-categories">
+        {{ $list := sort ($.Site.GetPage "taxonomyTerm" "categories").Pages "Title" }}
         {{ range $list }}
           <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
         {{ end }}
