@@ -1,9 +1,10 @@
-{{ if .Permalink }}
-<a href="{{ .Permalink }}" class="post-meta-permalink">
-{{ end }}
 <small class="small post-meta">
+  {{ if .Permalink }}
+  <a href="{{ .Permalink }}" class="post-meta-permalink">
+  {{ end }}
   <time datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}" class="time">{{ .Date.Format "02 Jan 2006" }}</time>
+  {{ if .Permalink }}
+  &nbsp;&infin;
+  </a>
+  {{ end }}
 </small>
-{{ if .Permalink }}
-</a>
-{{ end }}

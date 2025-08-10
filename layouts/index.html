@@ -6,7 +6,7 @@
       {{ $paginator := .Paginate (where .Site.Pages.ByDate.Reverse "Type" "post") }}
       {{ range .Paginator.Pages }}
         <li class="item item--post">
-          <article class="article article--post typeset">
+          <article class="article {{ if .Title -}} article--post {{- else -}} article--micropost {{- end }} typeset">
             {{ if .Title }}
               <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
             {{ end }}

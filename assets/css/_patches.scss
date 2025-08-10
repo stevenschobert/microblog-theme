@@ -14,6 +14,7 @@
   color: $captionColour;
 
   &:hover, &:active, &:focus {
+    color: darken($captionColour, 20%);
     background-position: 0 93%;
     background-repeat: repeat-x;
     background-size: 100% 0.15rem;
