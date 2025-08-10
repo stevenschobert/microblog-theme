@@ -4,9 +4,12 @@
     <article class="article article--page typeset">
       <h1>Archive</h1>
       <p>
-        Below is a full list of posts sorted from newest to oldest.
-        You can also find posts by visiting any of these category pages:
+        Below is a list of all categories used across posts, as well
+        as a complete list of posts ordered from newest to oldest.
       </p>
+    </article>
+    <article class="article article--page typeset">
+      <h2>Categories</h2>
       <ul>
         {{ $list := sort ($.Site.GetPage "taxonomyTerm" "categories").Pages "Title" }}
         {{ range $index, $element := $list }}
