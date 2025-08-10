@@ -6,13 +6,13 @@
       <p>
         Below is a full list of posts sorted from newest to oldest.
         You can also find posts by visiting any of these category pages:
+      </p>
+      <ul>
         {{ $list := sort ($.Site.GetPage "taxonomyTerm" "categories").Pages "Title" }}
-        <ul>
         {{ range $index, $element := $list }}
           <li><a href="{{ $element.Permalink }}">{{ $element.Title }}</a></li>
         {{ end }}
-        </ul>
-      </p>
+      </ul>
     </article>
     <article class="article article--page typeset">
       <h2>Full post list</h2>
