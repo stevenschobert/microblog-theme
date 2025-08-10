@@ -3,6 +3,7 @@
   <div class="content">
     <article class="article article--page typeset">
 			<h1>{{ .Title }}</h1>
+			<p>Posts tagged with category: {{ .Title }}</p>
     </article>
     <ul class="list list--posts">
       {{ $paginator := .Paginate (where .Pages.ByDate.Reverse "Type" "post") }}
