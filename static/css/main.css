@@ -71,6 +71,20 @@ body:before {
     float: left;
 }
 
+/* added */
+.home-post-list .home-post-entry:nth-child(1) {
+    border-top: 0;
+}
+
+.home-post-entry {
+    border-top: 1px dashed;
+    padding: 25px 0;
+}
+.home-post-entry h1:nth-child(1),
+.home-post-entry p:nth-child(1) {
+    margin-top: 0;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-main);
     color: var(--heading-color);

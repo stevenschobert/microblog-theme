@@ -1,24 +1,19 @@
 {{ define "main" }}
-<div class="home h-feed">
-
-  <ul class="post-list">
-	{{ $paginator := .Paginate (where .Site.Pages.ByDate.Reverse "Type" "post") (index .Site.Params "archive-paginate" | default 25) }}
-	{{ range $paginator.Pages  }}
-      <li class="h-entry">
-		{{ if .Title }}
-			<h1 class="p-name"><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-		{{ end }}
-
-        <a href="{{ .Permalink }}" class="u-url"><span class="post-meta"><time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "Jan 2, 2006" }}</time></span></a>
-
-        <div class="e-content">
-         	{{ .Content }}
+<main>
+    <div class="home-post-list">
+    {{ $paginator := .Paginate (where .Site.Pages.ByDate.Reverse "Type" "post") }}
+    {{ range $paginator.Pages  }}
+        <div class="home-post-entry">
+            {{ if .Title }}
+                <h1 style="margin-bottom: 0;"><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+                <p style="margin-top: 0;"><i>{{ partial "time.html" .Date }}</i></p>
+            {{ else }}
+                <p><i><a href="{{ .Permalink }}">{{ partial "time.html" .Date }}</a></i></p>
+            {{ end }}
+            {{ .Content }}
         </div>
-      </li>
     {{ end }}
-  </ul>
+    </div>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "feed.xml" | absURL }}">via RSS</a></p>
-
-</div>
+</main>
 {{ end }}
