@@ -1,50 +1,24 @@
 {{ define "main" }}
-<main class="main container">
-  <div class="content">
+<div class="home h-feed">
 
-    <ul class="list list--posts">
-      {{ $paginator := .Paginate (where .Site.Pages.ByDate.Reverse "Type" "post") }}
-      {{ range .Paginator.Pages }}
-        <li class="item item--post">
-          <article class="article {{ if .Title -}} article--post {{- else -}} article--micropost {{- end }} typeset">
-            {{ if .Title }}
-              <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-            {{ end }}
-            {{ partial "post_meta.html" (dict "Date" .Date "Permalink" .Permalink "Params" .Params) }}
-            {{ if in .RawContent "<!--more-->" }}
-              {{ $splitContents := split .RawContent "<!--more-->" }}
-              {{ $summary := index $splitContents 0 }}
-              {{ $summary := replaceRE "\\[\\^.*?\\]" "" $summary }}
-              {{ $summary := replaceRE "\\n\\[\\^.*?\\]:.*" "" $summary }}
-              <p>
-                {{ $summary | markdownify }}...
-                <a class="read-more" href="{{ .Permalink }}">
-                  &laquo; read more &raquo;
-                </a>
-              </p>
-            {{ else if .Params.custom_summary }}
-              <p>{{ .Summary | safeHTML }}</p>
-            {{ else }}
-              {{ .Content }}
-            {{ end }}
-          </article>
-        </li>
-      {{ end }}
-    </ul>
+  <ul class="post-list">
+	{{ $paginator := .Paginate (where .Site.Pages.ByDate.Reverse "Type" "post") (index .Site.Params "archive-paginate" | default 25) }}
+	{{ range $paginator.Pages  }}
+      <li class="h-entry">
+		{{ if .Title }}
+			<h1 class="p-name"><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+		{{ end }}
 
-    <nav class="nav nav--paginator">
-      {{ if $paginator.HasPrev }}
-        <a href="{{ $paginator.Prev.URL }}" class="pagination pagination--previous">&larr; Previous</a>
-      {{ else }}
-        <span class="pagination pagination--previous">&larr; Previous</span>
-      {{ end }}
-      {{ if $paginator.HasNext }}
-        <a href="{{ $paginator.Next.URL }}" class="pagination  pagination--next">Next &rarr;</a>
-      {{ else }}
-        <span class="pagination pagination--next">Next &rarr;</span>
-      {{ end }}
-    </nav>
+        <a href="{{ .Permalink }}" class="u-url"><span class="post-meta"><time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "Jan 2, 2006" }}</time></span></a>
 
-  </div>
-</main>
+        <div class="e-content">
+         	{{ .Content }}
+        </div>
+      </li>
+    {{ end }}
+  </ul>
+
+  <p class="rss-subscribe">subscribe <a href="{{ "feed.xml" | absURL }}">via RSS</a></p>
+
+</div>
 {{ end }}

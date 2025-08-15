@@ -1,54 +1,8 @@
 {{ define "main" }}
-<main class="main container">
-  <div class="content">
-    <article class="article article--page typeset">
-      <h1>Category: {{ .Title }}</h1>
-      <p>Below is a filtered view of posts tagged with "{{ .Title }}". If you can't find what
-      you're looking for, you may try visiting the <a href="{{print (absURL "archive/")}}">archive</a> page.</p>
-    </article>
-    <ul class="list list--posts">
-      {{ $paginator := .Paginate (where .Pages.ByDate.Reverse "Type" "post") }}
-      {{ range .Paginator.Pages }}
-        <li class="item item--post">
-          <article class="article {{ if .Title -}} article--post {{- else -}} article--micropost {{- end }} typeset">
-            {{ if .Title }}
-              <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-            {{ end }}
-            {{ partial "post_meta.html" (dict "Date" .Date "Permalink" .Permalink "Params" .Params) }}
-            {{ if in .RawContent "<!--more-->" }}
-              {{ $splitContents := split .RawContent "<!--more-->" }}
-              {{ $summary := index $splitContents 0 }}
-              {{ $summary := replaceRE "\\[\\^.*?\\]" "" $summary }}
-              {{ $summary := replaceRE "\\n\\[\\^.*?\\]:.*" "" $summary }}
-              <p>
-                {{ $summary | markdownify }}...
-                <a class="read-more" href="{{ .Permalink }}">
-                  &laquo; read more &raquo;
-                </a>
-              </p>
-            {{ else if .Params.custom_summary }}
-              <p>{{ .Summary | safeHTML }}</p>
-            {{ else }}
-              {{ .Content }}
-            {{ end }}
-          </article>
-        </li>
-      {{ end }}
-    </ul>
-
-    <nav class="nav nav--paginator">
-      {{ if $paginator.HasPrev }}
-        <a href="{{ $paginator.Prev.URL }}" class="pagination pagination--previous">&larr; Previous</a>
-      {{ else }}
-        <span class="pagination pagination--previous">&larr; Previous</span>
-      {{ end }}
-      {{ if $paginator.HasNext }}
-        <a href="{{ $paginator.Next.URL }}" class="pagination  pagination--next">Next &rarr;</a>
-      {{ else }}
-        <span class="pagination pagination--next">Next &rarr;</span>
-      {{ end }}
-    </nav>
-
-  </div>
+<main>
+    <h3>Posts tagged with: #{{ lower .Title }}</h3>
+    {{ .Content }}
+    {{ $paginator := .Paginate (where .Pages.ByDate.Reverse "Type" "post") (index .Site.Params "archive-paginate" | default 25) }}
+    {{ partial "post_list.html" $paginator.Pages }}
 </main>
 {{ end }}

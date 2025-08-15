@@ -10,6 +10,6 @@ demosite = 'https://stevenschobert.microblog.com'
   homepage = 'https://stevenschobert.com'
 
 [original]
-  author = 'David Darnes'
-  homepage = 'https://garth.darn.es'
-  repo = 'https://github.com/daviddarnes/garth'
+  author = 'Herman Martinus'
+  homepage = 'https://herman.bearblog.dev'
+  repo = 'https://github.com/microdotblog/theme-bear'

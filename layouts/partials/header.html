@@ -1,18 +1,7 @@
-<header class="header">
-  <div class="container">
-    <a class="logo" href="/">
-      <img src="{{ .Site.Author.avatar }}" alt="{{ .Site.Title }} Profile Photo"/>
+<header>
+    <a href="{{ "/" | relURL }}" class="title">
+        <img src="{{ .Site.Author.avatar }}" alt="profile photo of {{ .Site.Author.name }}" class="avatar" />
+        <h1>{{ .Site.Title }}</h1>
     </a>
-    <nav class="nav">
-      <ul class="list list--nav">
-        {{ range .Site.Menus.main }}
-          {{ if .Page.Params.redirect_url }}
-            <li class="item item--nav"><a href="{{ .Page.Params.redirect_url }}">{{ .Name }}</a></li>
-          {{ else }}
-            <li class="item item--nav"><a href="{{ .URL | relLangURL | safeURL }}">{{ .Name }}</a></li>
-          {{ end }}
-        {{ end }}
-      </ul>
-    </nav>
-  </div>
+    {{ partial "nav.html" . }}
 </header>
