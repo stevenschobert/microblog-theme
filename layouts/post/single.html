@@ -1,5 +1,5 @@
 {{ define "main" }}
-<main>
+<main class="{{- if (not .Title) -}} micropost {{- end -}}">
     {{ if .Title }}
         <h1>{{ .Title }}</h1>
     {{ end }}

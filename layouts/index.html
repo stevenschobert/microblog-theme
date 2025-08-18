@@ -2,15 +2,13 @@
 <main>
     <div class="home-post-list">
     {{ $paginator := .Paginate (where .Site.Pages.ByDate.Reverse "Type" "post") }}
-    {{ range $paginator.Pages  }}
-        <div class="home-post-entry">
+    {{ range $index, $element := $paginator.Pages  }}
+        <div class="home-post-entry {{- if (and (eq $index 0) (not .Title)) }} micropost {{- end -}}">
             {{ if .Title }}
-                <h1 style="margin-bottom: 0;"><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-                <p style="margin-top: 0;"><i>{{ partial "time.html" .Date }}</i></p>
-            {{ else }}
-                <p><i><a href="{{ .Permalink }}">{{ partial "time.html" .Date }}</a></i></p>
+                <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
             {{ end }}
             {{ .Content }}
+            <p><i><a href="{{ .Permalink }}"><span style="font-family: monospace; font-style: normal; font-weight: bold;">&rarr;&nbsp;</span>{{ partial "time.html" .Date }}</a></i></p>
         </div>
     {{ end }}
     </div>
