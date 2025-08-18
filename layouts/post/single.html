@@ -1,29 +1,29 @@
 {{ define "main" }}
 <main>
     {{ if .Title }}
-	  	<h1>{{ .Title }}</h1>
-  	{{ end }}
+        <h1>{{ .Title }}</h1>
+    {{ end }}
 
     <p><i>{{ partial "time.html" .Date }}</i></p>
 
-	{{ with .Params.audio }}
-	    <script type="text/javascript" src="https://micro.blog/narration.js?url={{ . }}"></script>
-	{{ end }}
+    {{ with .Params.audio }}
+        <script type="text/javascript" src="https://micro.blog/narration.js?url={{ . }}"></script>
+    {{ end }}
 
-	{{ if .Params.author }}
-	    <p>by {{ .Params.author.name }}</p>
-	{{ end }}
+    {{ if .Params.author }}
+        <p>by {{ .Params.author.name }}</p>
+    {{ end }}
 
-	{{ .Content }}
+    {{ .Content }}
 
-	{{ if .Params.categories }}
-	    <p class="tags">
+    {{ if .Params.categories }}
+        <p class="tags">
             {{ range .Params.categories }}
                 {{ $href := print (absURL "categories/") (urlize .) }}
                 <a href="{{ $href }}">#{{ lower . }}</a>
             {{ end }}
         </p>
-	{{ end }}
+    {{ end }}
 
     {{ if .Site.Params.include_conversation }}
         <script type="text/javascript" src="https://micro.blog/conversation.js?url={{ .Permalink }}"></script>
