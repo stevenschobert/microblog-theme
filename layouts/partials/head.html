@@ -6,7 +6,7 @@
     {{- end -}}</title>
     <meta name="description" content="{{ .Summary }}">
     <link rel="shortcut icon" href="https://micro.blog/{{ .Site.Author.username }}/favicon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/main.css" | relURL }}?{{ .Site.Params.theme_seconds }}">
     <link rel="canonical" href="{{ .Permalink }}">
     {{ partial "microblog_head.html" . }}
 </head>
