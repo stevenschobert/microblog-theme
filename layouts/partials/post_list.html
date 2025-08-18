@@ -2,11 +2,13 @@
     {{ range . }}
         <li>
             <span><i><a href="{{ .Permalink }}">{{ partial "time.html" .Date }}</a></i></span>
-            {{ if .Title }}
-                <b>{{ .Title }}</b>&nbsp;&mdash; {{ .Plain | truncate 40 }}
-            {{ else }}
-                {{ .Plain | truncate 70 }}
-            {{ end }}
+            <div>
+                {{ if .Title }}
+                    <b>{{ .Title }}</b>&nbsp;&mdash; {{ .Plain | truncate 40 }}
+                {{ else }}
+                    {{ .Plain | truncate 70 }}
+                {{ end }}
+            </div>
         </li>
     {{ end }}
 </ul>
