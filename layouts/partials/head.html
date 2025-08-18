@@ -6,6 +6,9 @@
     {{- end -}}</title>
     <meta name="description" content="{{ .Summary }}">
     <link rel="shortcut icon" href="https://micro.blog/{{ .Site.Author.username }}/favicon.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ "css/main.css" | relURL }}?{{ .Site.Params.theme_seconds }}">
     <link rel="canonical" href="{{ .Permalink }}">
     {{ partial "microblog_head.html" . }}
