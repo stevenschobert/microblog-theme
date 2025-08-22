@@ -109,6 +109,11 @@ strong, b {
     color: var(--heading-color);
 }
 
+/* added */
+a strong, a b {
+    color: var(--link-color);
+}
+
 button {
     margin: 0;
     cursor: pointer;
